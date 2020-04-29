@@ -23,8 +23,12 @@
 		"type": "git",
 		"url": "https://github.com/musicplayce/intercom-ts.git"
 	},
+	"scripts": {
+		"start": "ts-node lib/."
+	},
 	"devDependencies": {
 		"@types/node": "^13.13.4",
+		"@types/qs": "^6.9.1",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
 		"eslint": "^6.8.0",
@@ -39,6 +43,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.19.2",
-		"intercom-client": "^2.11.0"
+		"intercom-client": "^2.11.0",
+		"qs": "^6.9.3"
 	}
 }
