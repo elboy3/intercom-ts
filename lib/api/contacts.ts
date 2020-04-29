@@ -3,8 +3,6 @@ import { IClient, IIntercomAPI } from '../typings';
 export class IntercomContactsAPI extends IIntercomAPI {
 	constructor(client: IClient) {
 		super(client);
-
-		console.dir('client', client);
 	}
 
 	public archive(data: any): Promise<any> {
