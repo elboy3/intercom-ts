@@ -10,6 +10,7 @@ export class IntercomClient extends IClient {
 	private readonly _http: AxiosInstance;
 	private readonly _auth: IntercomAuth;
 	private readonly _intercomVersion: IntercomVersion = '2.0';
+	private readonly _baseURL: string = 'https://api.intercom.io';
 
 	public contacts: IntercomContactsAPI;
 
@@ -30,7 +31,7 @@ export class IntercomClient extends IClient {
 		if (intercomVersion) this._intercomVersion = intercomVersion;
 
 		this._http = axios.create({
-			baseURL: 'https://api.intercom.io',
+			baseURL: this._baseURL,
 			auth: this._auth,
 			headers: {
 				'Intercom-Version': this._intercomVersion
@@ -51,20 +52,19 @@ export class IntercomClient extends IClient {
 		return this._intercomVersion;
 	}
 
-	public get = async <R, Q>(endpoint: string, query?: Q) => {
-		const url = query ? endpoint + `?${qs.stringify(query)}` : endpoint;
-		return await this._http.get<R>(url);
+	public get = async <ResponseData, Query>(endpoint: string, query?: Query) => {
+		return await this._http.get<ResponseData>(query ? endpoint + `?${qs.stringify(query)}` : endpoint);
 	};
 
-	public put = async <R, D>(endpoint: string, data: D) => {
-		return await this._http.put<R>(endpoint, data);
+	public put = async <ResponseData, Data>(endpoint: string, data: Data) => {
+		return await this._http.put<ResponseData>(endpoint, data);
 	};
 
-	public post = async <R, D>(endpoint: string, data: D) => {
-		return await this._http.post<R>(endpoint, data);
+	public post = async <ResponseData, Data>(endpoint: string, data: Data) => {
+		return await this._http.post<ResponseData>(endpoint, data);
 	};
 
-	public delete = async <D, Q>(endpoint: string, query?: Q) => {
-		return await this._http.delete<D>(query ? endpoint + `?${qs.stringify(query)}` : endpoint);
+	public delete = async <ResponseData, Query>(endpoint: string, query?: Query) => {
+		return await this._http.delete<ResponseData>(query ? endpoint + `?${qs.stringify(query)}` : endpoint);
 	};
 }
