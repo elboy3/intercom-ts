@@ -1,4 +1,5 @@
-import { IClient } from '..';
+import { IClient } from '../client';
+import { IntercomSearch } from '../search';
 
 export abstract class IIntercomAPI {
 	protected readonly _client: IClient;
@@ -7,10 +8,10 @@ export abstract class IIntercomAPI {
 		this._client = client;
 	}
 
-	public abstract archive(data: any): Promise<any>;
 	public abstract create(data: any): Promise<any>;
+	public abstract delete(id: string): Promise<any>;
 	public abstract find(data: any): Promise<any>;
 	public abstract list(): Promise<any>;
-	public abstract listBy(data: any): Promise<any>;
-	public abstract delete(data: any): Promise<any>;
+	public abstract search(search: IntercomSearch): Promise<any>;
+	public abstract update(id: string, data: any): Promise<any>;
 }

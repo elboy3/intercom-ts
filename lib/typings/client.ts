@@ -6,5 +6,4 @@ export abstract class IClient {
 	public put: <R, D>(endpoint: string, data: D) => Promise<AxiosResponse<R>>;
 	public post: <R, D>(endpoint: string, data: D) => Promise<AxiosResponse<R>>;
 	public delete: <R, Q>(endpoint: string, query?: Q) => Promise<AxiosResponse<R>>;
-	protected request: <R, Q>(reqConfig: AxiosRequestConfig) => Promise<AxiosResponse<R>>;
 }
