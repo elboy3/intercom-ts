@@ -27,6 +27,7 @@
 		"start": "ts-node lib/."
 	},
 	"devDependencies": {
+		"@types/lodash": "^4.14.150",
 		"@types/node": "^13.13.4",
 		"@types/qs": "^6.9.1",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
@@ -44,6 +45,7 @@
 	"dependencies": {
 		"axios": "^0.19.2",
 		"intercom-client": "^2.11.0",
+		"lodash": "^4.17.15",
 		"qs": "^6.9.3"
 	}
 }

@@ -1,32 +1,64 @@
-import { IClient, IIntercomAPI } from '../typings';
+import {
+	IClient,
+	IIntercomAPI,
+	IntercomSearch,
+	CreateOrUpdateContactModel,
+	ContactsList,
+	ContactModel,
+	DeleteContactResponse,
+	IntercomFind
+} from '../typings';
+import { AxiosResponse } from 'axios';
+import { determineIfSearchById, determineIfSearchByEmail, determineIfSearchByExternalId } from '../utils';
 
 export class IntercomContactsAPI extends IIntercomAPI {
 	constructor(client: IClient) {
 		super(client);
 	}
 
-	public archive(data: any): Promise<any> {
-		throw new Error('Method not implemented.');
+	public async create(data: CreateOrUpdateContactModel): Promise<AxiosResponse<ContactModel>> {
+		return await this._client.post<ContactModel, CreateOrUpdateContactModel>('/contacts', data);
 	}
 
-	public create(data: any): Promise<any> {
-		throw new Error('Method not implemented.');
+	public async delete(id: string): Promise<AxiosResponse<DeleteContactResponse>> {
+		return await this._client.delete<DeleteContactResponse, undefined>(`/contacts/${id}`);
 	}
 
-	public find(query: any): Promise<any> {
-		if (query.id) return this._client.get<any, any>(`/contacts/${query.id}`);
-		return this._client.get<any, any>('/contacts', query);
+	public async find(query: IntercomFind): Promise<any> {
+		if (determineIfSearchById(query)) await this._client.get<any, any>(`/contacts/${query.id}`);
+		else if (determineIfSearchByEmail(query)) return await this.searchByEmail(query.email);
+		else if (determineIfSearchByExternalId(query)) return await this.searchByExternalId(query.external_id);
 	}
 
-	public list(): Promise<any> {
-		return this._client.get<any, any>('/contacts');
+	public async list(): Promise<AxiosResponse<ContactsList>> {
+		return await this._client.get<ContactsList, undefined>('/contacts');
 	}
 
-	public listBy(data: any): Promise<any> {
-		throw new Error('Method not implemented.');
+	public async search(search: IntercomSearch): Promise<AxiosResponse<ContactsList>> {
+		return await this._client.post<ContactsList, IntercomSearch>('/contacts/search', search);
 	}
 
-	public delete(data: any): Promise<any> {
-		throw new Error('Method not implemented.');
+	public async update(id: string, data: CreateOrUpdateContactModel): Promise<AxiosResponse<ContactModel>> {
+		return await this._client.put<ContactModel, CreateOrUpdateContactModel>(`/contacts/${id}`, data);
+	}
+
+	private async searchByEmail(email: string) {
+		return await this.search({
+			query: {
+				field: 'email',
+				operator: '=',
+				value: email
+			}
+		});
+	}
+
+	private async searchByExternalId(external_id: string) {
+		return await this.search({
+			query: {
+				field: 'external_id',
+				operator: '=',
+				value: external_id
+			}
+		});
 	}
 }
