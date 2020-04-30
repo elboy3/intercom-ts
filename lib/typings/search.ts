@@ -15,6 +15,8 @@ export interface INestedFilter {
 export type IntercomSearch = ISingleFilter | IMultipleFilter | INestedFilter | Object;
 
 export type SearchById = { id: string };
+export type SearchByUserId = { user_id: string };
+export type SearchByIntercomUserId = { intercom_user_id: string };
 export type SearchByEmail = { email: string };
 export type SearchByExternalId = { external_id: string };
-export type IntercomFind = SearchById | SearchByEmail | SearchByExternalId;
+export type IntercomFind = SearchById | SearchByEmail | SearchByExternalId | SearchByIntercomUserId | SearchByUserId;

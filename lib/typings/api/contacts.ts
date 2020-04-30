@@ -1,5 +1,5 @@
-import { IntercomList, StringOrNull, BooleanOrNull, NumberOrNull } from './common';
-import { SocialProfilesList } from './social_profiles';
+import { IntercomList, StringOrNull, BooleanOrNull, NumberOrNull } from '../common';
+import { SocialProfilesList } from '../social_profiles';
 
 export interface DeleteContactResponse {
 	id: string;

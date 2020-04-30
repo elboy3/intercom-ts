@@ -4,6 +4,7 @@ import axios, { AxiosInstance } from 'axios';
 import { IntercomContactsAPI } from './api';
 import { determineIfTokenAuth, determineIfAPIKeyAuth } from './utils';
 import { ClientAuth, ClientConstructionError, IntercomAuth, IClient, IntercomVersion } from './typings';
+import { IntercomEventsAPI } from './api/events';
 
 export class IntercomClient extends IClient {
 	private static _instance: IntercomClient;
@@ -13,6 +14,7 @@ export class IntercomClient extends IClient {
 	private readonly _baseURL: string = 'https://api.intercom.io';
 
 	public contacts: IntercomContactsAPI;
+	public events: IntercomEventsAPI;
 
 	private constructor(auth: ClientAuth, intercomVersion?: IntercomVersion) {
 		super();
@@ -43,6 +45,7 @@ export class IntercomClient extends IClient {
 		if (!IntercomClient._instance) {
 			IntercomClient._instance = new IntercomClient(auth, intercomVersion);
 			// ... any one time initialization goes here ...
+			IntercomClient._instance.events = new IntercomEventsAPI(IntercomClient._instance);
 			IntercomClient._instance.contacts = new IntercomContactsAPI(IntercomClient._instance);
 		}
 		return IntercomClient._instance;
