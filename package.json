@@ -1,6 +1,6 @@
 {
 	"name": "@musicplayce/intercom-ts",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"main": "dist/index",
 	"typings": "dist/index",
 	"author": "Gustavo Quinta <gustavoqnt40@gmail.com>",
