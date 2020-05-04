@@ -37,3 +37,4 @@ jobs:
           git checkout master
           npm run release
           git push origin master --follow-tags
+          npm publish

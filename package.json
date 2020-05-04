@@ -2,7 +2,7 @@
 	"name": "@musicplayce/intercom-ts",
 	"version": "0.0.5",
 	"main": "dist/index",
-	"typings": "dist/typings/index.d.ts",
+	"typings": "dist/index.d.ts",
 	"author": "Gustavo Quinta <gustavoqnt40@gmail.com>",
 	"license": "MIT",
 	"publishConfig": {
@@ -27,7 +27,7 @@
 	},
 	"scripts": {
 		"cz": "npx git-cz",
-		"prepublishOnly": "npm run build",
+		"prepublishOnly": "npm run test && npm run build",
 		"build": "npm run clean && tsc -p .",
 		"build:watch": "npm run clean & tsc -watch",
 		"lint": "eslint lib/**/*.ts",
@@ -59,7 +59,7 @@
 		"prettier-eslint-cli": "^5.0.0",
 		"rimraf": "^3.0.2",
 		"standard-version": "^7.1.0",
-		"ts-node": "^8.9.1",
+		"ts-node": "^8.10.1",
 		"typescript": "^3.8.3"
 	},
 	"dependencies": {
@@ -67,7 +67,7 @@
 		"axios-rate-limit": "^1.2.1",
 		"intercom-client": "^2.11.0",
 		"lodash": "^4.17.15",
-		"qs": "^6.9.3"
+		"qs": "^6.9.4"
 	},
 	"config": {
 		"commitizen": {
