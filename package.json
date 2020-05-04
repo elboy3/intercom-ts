@@ -26,10 +26,12 @@
 	},
 	"scripts": {
 		"cz": "npx git-cz",
-		"build": "rimraf ./dist && tsc",
-		"build:watch": "rimraf ./dist && tsc -watch",
+		"prepublishOnly": "npm run build",
+		"build": "npm run clean && tsc -p .",
+		"build:watch": "npm run clean & tsc -watch",
 		"test": "mocha -r ts-node/register tests/**/*.test.ts",
-		"release": "npx standard-version"
+		"release": "npx standard-version",
+		"clean": "rm -rf ./dist"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",
