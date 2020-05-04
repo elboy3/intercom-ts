@@ -3,13 +3,18 @@ import axios, { AxiosInstance } from 'axios';
 
 import { IntercomContactsAPI } from './api';
 import { determineIfTokenAuth, determineIfAPIKeyAuth } from './utils';
-import { ClientAuth, ClientConstructionError, IntercomAuth, IClient, IntercomVersion } from './typings';
+import {
+	ClientAuth,
+	ClientConstructionError,
+	IntercomAuth,
+	IClient,
+	IntercomVersion
+} from './typings';
 import { IntercomEventsAPI } from './api/events';
 
 const useRateLimiter = require('axios-rate-limit');
 
 export class IntercomClient extends IClient {
-	private static _instance: IntercomClient;
 	private readonly _http: AxiosInstance;
 	private readonly _auth: IntercomAuth;
 	private readonly _intercomVersion: IntercomVersion = '2.0';
@@ -18,7 +23,7 @@ export class IntercomClient extends IClient {
 	public contacts: IntercomContactsAPI;
 	public events: IntercomEventsAPI;
 
-	private constructor(auth: ClientAuth, intercomVersion?: IntercomVersion) {
+	constructor(auth: ClientAuth, intercomVersion?: IntercomVersion) {
 		super();
 		if (determineIfTokenAuth(auth)) {
 			this._auth = {
@@ -44,16 +49,9 @@ export class IntercomClient extends IClient {
 			}),
 			{ maxRequests: 100, perMilliseconds: 10000 }
 		);
-	}
 
-	public static getInstance(auth: ClientAuth, intercomVersion?: IntercomVersion): IntercomClient {
-		if (!IntercomClient._instance) {
-			IntercomClient._instance = new IntercomClient(auth, intercomVersion);
-			// ... any one time initialization goes here ...
-			IntercomClient._instance.events = new IntercomEventsAPI(IntercomClient._instance);
-			IntercomClient._instance.contacts = new IntercomContactsAPI(IntercomClient._instance);
-		}
-		return IntercomClient._instance;
+		this.events = new IntercomEventsAPI(this);
+		this.contacts = new IntercomContactsAPI(this);
 	}
 
 	public get intercomVersion() {
@@ -61,7 +59,9 @@ export class IntercomClient extends IClient {
 	}
 
 	public get = async <ResponseData, Query>(endpoint: string, query?: Query) => {
-		return await this._http.get<ResponseData>(query ? endpoint + `?${qs.stringify(query)}` : endpoint);
+		return await this._http.get<ResponseData>(
+			query ? endpoint + `?${qs.stringify(query)}` : endpoint
+		);
 	};
 
 	public put = async <ResponseData, Data>(endpoint: string, data: Data) => {
@@ -72,7 +72,12 @@ export class IntercomClient extends IClient {
 		return await this._http.post<ResponseData>(endpoint, data);
 	};
 
-	public delete = async <ResponseData, Query>(endpoint: string, query?: Query) => {
-		return await this._http.delete<ResponseData>(query ? endpoint + `?${qs.stringify(query)}` : endpoint);
+	public delete = async <ResponseData, Query>(
+		endpoint: string,
+		query?: Query
+	) => {
+		return await this._http.delete<ResponseData>(
+			query ? endpoint + `?${qs.stringify(query)}` : endpoint
+		);
 	};
 }
