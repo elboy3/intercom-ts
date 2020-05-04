@@ -1,3 +1,5 @@
+**This SDK is intended for server-side use only. ***[Intercom](https://developers.intercom.com/building-apps/docs)*** offers their official [Javascript SDK](https://developers.intercom.com/v2.0/docs/intercom-javascript) for client-side operations.**
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -38,7 +40,6 @@
 
 ## Getting Started
 
-**This SDK is intended for server-side use only. ***[Intercom](https://developers.intercom.com/building-apps/docs)*** offers their official [Javascript SDK](https://developers.intercom.com/v2.0/docs/intercom-javascript) for client-side operations.**
 > **Currently the SDK only supports Intercom API Version 2.0**
 
 ### Installing
