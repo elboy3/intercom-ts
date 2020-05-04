@@ -36,8 +36,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Generate CHANGELOG
-    - run: |
-        npm ci
-        git checkout master
-        npm run release
-        git push origin master --follow-tags
+    - run: npm ci
+    - run: git checkout master
+    - run: npm run release
+    - run: git push origin master --follow-tags
