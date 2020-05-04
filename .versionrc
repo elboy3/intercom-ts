@@ -9,5 +9,5 @@
         {"type": "perf", "section": "Performance"},
         {"type": "test", "hidden": true}
     ],
-    "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]"
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}} :tada: [skip ci]"
 }

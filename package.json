@@ -25,10 +25,11 @@
 		"url": "https://github.com/musicplayce/intercom-ts.git"
 	},
 	"scripts": {
+		"cz": "npx git-cz",
 		"build": "rimraf ./dist && tsc",
 		"build:watch": "rimraf ./dist && tsc -watch",
 		"test": "mocha -r ts-node/register tests/**/*.test.ts",
-		"cz": "npx git-cz"
+		"release": "npx standard-version"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",
