@@ -1,7 +1,8 @@
 {
 	"name": "@musicplayce/intercom-ts",
 	"version": "0.0.2",
-	"main": "dist/index.js",
+	"main": "dist/index",
+	"typings": "dist/index",
 	"author": "Gustavo Quinta <gustavoqnt40@gmail.com>",
 	"license": "MIT",
 	"publishConfig": {
