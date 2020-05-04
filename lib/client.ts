@@ -6,6 +6,8 @@ import { determineIfTokenAuth, determineIfAPIKeyAuth } from './utils';
 import { ClientAuth, ClientConstructionError, IntercomAuth, IClient, IntercomVersion } from './typings';
 import { IntercomEventsAPI } from './api/events';
 
+const useRateLimiter = require('axios-rate-limit');
+
 export class IntercomClient extends IClient {
 	private static _instance: IntercomClient;
 	private readonly _http: AxiosInstance;
@@ -32,13 +34,16 @@ export class IntercomClient extends IClient {
 
 		if (intercomVersion) this._intercomVersion = intercomVersion;
 
-		this._http = axios.create({
-			baseURL: this._baseURL,
-			auth: this._auth,
-			headers: {
-				'Intercom-Version': this._intercomVersion
-			}
-		});
+		this._http = useRateLimiter(
+			axios.create({
+				baseURL: this._baseURL,
+				auth: this._auth,
+				headers: {
+					'Intercom-Version': this._intercomVersion
+				}
+			}),
+			{ maxRequests: 100, perMilliseconds: 10000 }
+		);
 	}
 
 	public static getInstance(auth: ClientAuth, intercomVersion?: IntercomVersion): IntercomClient {

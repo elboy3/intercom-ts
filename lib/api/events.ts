@@ -17,6 +17,6 @@ export class IntercomEventsAPI {
 		else if (determineIfSearchByIntercomUserId(query))
 			return await this._client.get('/events', { type: 'user', intercom_user_id: query.intercom_user_id });
 		else if (determineIfSearchByEmail(query)) return await this._client.get('/events', { type: 'user', email: query.email });
-		else throw new Error('Listing event may only be queried by the following `user_id, email, intercom_user_id`');
+		else throw new Error("Listing event's may only be queried by the following 'user_id, email, intercom_user_id'?");
 	}
 }
