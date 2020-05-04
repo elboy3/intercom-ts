@@ -4,6 +4,7 @@
 	"main": "dist/index",
 	"typings": "dist/index.d.ts",
 	"author": "Gustavo Quinta <gustavoqnt40@gmail.com>",
+	"description": "Intercom SDK made with Typescript intended for server-side use.",
 	"license": "MIT",
 	"publishConfig": {
 		"access": "public"
