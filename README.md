@@ -21,7 +21,7 @@
   </p>
 </p>
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![](https://github.com/musicplayce/intercom-ts/workflows/build/badge.svg) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 <!-- TABLE OF CONTENTS -->
 # Table of Contents

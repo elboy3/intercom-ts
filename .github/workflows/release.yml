@@ -1,4 +1,4 @@
-name: Release Workflow
+name: build
 
 on:
   push:
@@ -15,25 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
-    - name: Configure GitHub Token
-      uses: fregante/setup-git-token@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: "CHANGELOG Generator"
-        email: "changelog@users.noreply.github.com"
+      # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
+      - name: Configure GitHub Token
+        uses: fregante/setup-git-token@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: 'CHANGELOG Generator'
+          email: 'changelog@users.noreply.github.com'
 
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 11.x
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 11.x
 
-    - name: Generate CHANGELOG
-      run: |
-        npm install
-        npm ci
-        git checkout master
-        npm run release
-        git push origin master --follow-tags
+      - name: Generate CHANGELOG
+        run: |
+          npm install
+          npm ci
+          git checkout master
+          npm run release
+          git push origin master --follow-tags
