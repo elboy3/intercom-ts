@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
+      #- name: Configure GitHub Token
+      #  uses: fregante/setup-git-token@v1
+      #  with:
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    name: 'CHANGELOG Generator'
+      #    email: 'changelog@users.noreply.github.com'
+      - run: git config user.name "GitHub Actions" && git config user.email "actions@users.noreply.github.com"
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Test lib
+        run: |
+          npm install
+          npm ci
+          git checkout master
+          npm run test
+
+      - name: Generate CHANGELOG
+        run: |
+          npm run release
+          git push origin master --follow-tags
+
+      - name: Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
