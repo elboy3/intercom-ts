@@ -30,8 +30,8 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		else if (determineIfSearchByExternalId(query)) return await this.searchByExternalId(query.external_id);
 	}
 
-	public async list(): Promise<AxiosResponse<ContactsList>> {
-		return await this._client.get<ContactsList, undefined>('/contacts');
+	public async list(starting_after: string): Promise<AxiosResponse<ContactsList>> {
+		return await this._client.get<ContactsList, undefined>('/contacts?starting_after=' + starting_after);
 	}
 
 	public async search(search: IntercomSearch): Promise<AxiosResponse<ContactsList>> {

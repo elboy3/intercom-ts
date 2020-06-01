@@ -11,7 +11,7 @@ export abstract class IIntercomAPI {
 	public abstract create(data: any): Promise<any>;
 	public abstract delete(id: string): Promise<any>;
 	public abstract find(data: any): Promise<any>;
-	public abstract list(): Promise<any>;
+	public abstract list(starting_after: string): Promise<any>;
 	public abstract search(search: IntercomSearch): Promise<any>;
 	public abstract update(id: string, data: any): Promise<any>;
 }
