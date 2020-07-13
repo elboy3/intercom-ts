@@ -59,7 +59,7 @@
 		"prettier-eslint": "^9.0.1",
 		"prettier-eslint-cli": "^5.0.0",
 		"rimraf": "^3.0.2",
-		"standard-version": "^7.1.0",
+		"standard-version": "^8.0.1",
 		"ts-node": "^8.10.1",
 		"typescript": "^3.8.3"
 	},
