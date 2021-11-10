@@ -88,7 +88,7 @@ export class IntercomContactsAPI extends IIntercomAPI {
 
 	public async createCompany(
 		data: CreateOrUpdateCompanyModel
-	): Promise<AxiosResponse<ContactModel>> {
+	): Promise<AxiosResponse<CompanyModel>> {
 		return await this._client.post<CompanyModel, CreateOrUpdateCompanyModel>(
 			`/companies`,
 			data
