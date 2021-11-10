@@ -73,6 +73,16 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		);
 	}
 
+	public async merge(
+		from: string,
+		into: string
+	): Promise<AxiosResponse<ContactModel>> {
+		return await this._client.put<ContactModel, undefined>(
+			`/contacts/${id}`,
+			{ from, into }
+		);
+	}
+
 	private async searchByEmail(email: string) {
 		return await this.search({
 			query: {
