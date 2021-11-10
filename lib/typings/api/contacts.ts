@@ -66,3 +66,8 @@ export interface ContactModel {
 	ios_last_seen_at: NumberOrNull;
 	custom_attributes: Object;
 }
+
+export interface MergeModel {
+  from: string;
+  into: string;
+}

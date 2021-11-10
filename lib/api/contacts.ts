@@ -8,7 +8,8 @@ import {
 	ContactsList,
 	ContactModel,
 	DeleteContactResponse,
-	CreateOrUpdateContactModel
+	CreateOrUpdateContactModel,
+	MergeModel
 } from '../typings';
 import { AxiosResponse } from 'axios';
 import {
@@ -77,8 +78,8 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		from: string,
 		into: string
 	): Promise<AxiosResponse<ContactModel>> {
-		return await this._client.put<ContactModel, undefined>(
-			`/contacts/${id}`,
+		return await this._client.put<ContactModel, MergeModel>(
+			`/contacts/merge`,
 			{ from, into }
 		);
 	}
