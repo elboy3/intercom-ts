@@ -78,7 +78,7 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		from: string,
 		into: string
 	): Promise<AxiosResponse<ContactModel>> {
-		return await this._client.put<ContactModel, MergeModel>(
+		return await this._client.post<ContactModel, MergeModel>(
 			`/contacts/merge`,
 			{ from, into }
 		);
