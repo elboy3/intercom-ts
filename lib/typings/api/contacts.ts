@@ -72,11 +72,29 @@ export interface MergeModel {
   into: string;
 }
 
-export interface CompanyModel {
-	name?: string;
-	plan?: string;
+export interface CreateOrUpdateCompanyModel {
 	company_id?: string;
+	name?: string;
 	website?: string;
-	industry?: string;
+	industry?: number;
 	custom_attributes?: Object;
+	remote_created_at?: number;
+}
+
+export interface CompanyModel {
+	type: string;
+	id: string;
+	name: string;
+	plan: string;
+	company_id: string;
+	remote_created_at: NumberOrNull;
+	created_at: NumberOrNull;
+	updated_at: NumberOrNull;
+	size: number;
+	website: string;
+	industry: string;
+	monthly_spend: number;
+	session_count: number;
+	user_count: number;
+	custom_attributes: Object;
 }
