@@ -9,9 +9,9 @@ export interface DeleteContactResponse {
 
 export type ContactRole = 'user' | 'lead';
 export interface CreateOrUpdateContactModel {
-	role: ContactRole;
-	external_id: string;
-	email: string;
+	role?: ContactRole;
+	external_id?: string;
+	email?: string;
 	phone?: string;
 	name?: string;
 	avatar?: string;
