@@ -71,3 +71,12 @@ export interface MergeModel {
   from: string;
   into: string;
 }
+
+export interface CompanyModel {
+	name?: string;
+	plan?: string;
+	company_id?: string;
+	website?: string;
+	industry?: string;
+	custom_attributes?: Object;
+}

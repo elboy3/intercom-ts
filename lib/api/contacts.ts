@@ -9,7 +9,8 @@ import {
 	ContactModel,
 	DeleteContactResponse,
 	CreateOrUpdateContactModel,
-	MergeModel
+	MergeModel,
+	CompanyModel
 } from '../typings';
 import { AxiosResponse } from 'axios';
 import {
@@ -81,6 +82,25 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		return await this._client.post<ContactModel, MergeModel>(
 			`/contacts/merge`,
 			{ from, into }
+		);
+	}
+
+	public async createCompany(
+		data: CompanyModel
+	): Promise<AxiosResponse<ContactModel>> {
+		return await this._client.post<CompanyModel, CompanyModel>(
+			`/companies`,
+			data
+		);
+	}
+
+	public async attachCompanyToContact(
+		contactId: string,
+		companyId: string
+	): Promise<AxiosResponse<ContactModel>> {
+		return await this._client.post<CompanyModel, Record<string, string>>(
+			`/contacts/${contactId}/companies`,
+			{ id: companyId }
 		);
 	}
 
