@@ -53,6 +53,28 @@ export class IntercomContactsAPI extends IIntercomAPI {
 			return await this.searchByExternalId(query.external_id);
 	}
 
+	public async findUserByEmail(
+		email: string
+	): Promise<any> {
+		return await this.search({
+			query: {
+				operator: "AND",
+				value: [
+					{
+						field: 'email',
+						operator: '=',
+						value: email
+					},
+					{
+						field: 'role',
+						operator: '=',
+						value: "user"
+					}
+				]
+			}
+		});
+	}
+
 	public async list(starting_after: string): Promise<AxiosResponse<ContactsList>> {
 		return await this._client.get<ContactsList, undefined>('/contacts?starting_after=' + starting_after);
 	}

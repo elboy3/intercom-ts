@@ -76,7 +76,7 @@ export interface CreateOrUpdateCompanyModel {
 	company_id?: string;
 	name?: string;
 	website?: string;
-	industry?: number;
+	industry?: string;
 	custom_attributes?: Object;
 	remote_created_at?: number;
 }
