@@ -43,7 +43,7 @@ export class IntercomContactsAPI extends IIntercomAPI {
 		query: SearchById | SearchByEmail | SearchByExternalId
 	): Promise<any> {
 		if (determineIfSearchById(query))
-			await this._client.get<any, any>(`/contacts/${query.id}`);
+			return await this._client.get<any, any>(`/contacts/${query.id}`);
 		else if (determineIfSearchByEmail(query))
 			return await this.searchByEmail(query.email);
 		else if (determineIfSearchByExternalId(query))
