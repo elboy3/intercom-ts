@@ -58,21 +58,21 @@ export class IntercomClient extends IClient {
 		return this._intercomVersion;
 	}
 
-	public get = async <ResponseData, Query>(endpoint: string, query?: Query) => {
+	public get: any = async <ResponseData, Query>(endpoint: string, query?: Query) => {
 		return await this._http.get<ResponseData>(
 			query ? endpoint + `?${qs.stringify(query)}` : endpoint
 		);
 	};
 
-	public put = async <ResponseData, Data>(endpoint: string, data: Data) => {
+	public put: any = async <ResponseData, Data>(endpoint: string, data: Data) => {
 		return await this._http.put<ResponseData>(endpoint, data);
 	};
 
-	public post = async <ResponseData, Data>(endpoint: string, data: Data) => {
+	public post:any = async <ResponseData, Data>(endpoint: string, data: Data) => {
 		return await this._http.post<ResponseData>(endpoint, data);
 	};
 
-	public delete = async <ResponseData, Query>(
+	public delete: any = async <ResponseData, Query>(
 		endpoint: string,
 		query?: Query
 	) => {
