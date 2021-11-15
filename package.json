@@ -1,10 +1,10 @@
 {
-	"name": "@musicplayce/intercom-ts",
+	"name": "intercom-ts",
 	"version": "0.0.12",
 	"main": "dist/index",
 	"typings": "dist/index.d.ts",
-	"author": "Gustavo Quinta <gustavoqnt40@gmail.com>",
-	"description": "Intercom SDK made with Typescript intended for server-side use.",
+	"author": "Elliott Chartock <elliott@doola.com>",
+	"description": "Forked from Gustavo Quinta. Intercom SDK made with Typescript intended for server-side use.",
 	"license": "MIT",
 	"publishConfig": {
 		"access": "public"
@@ -18,9 +18,9 @@
 		"intercom",
 		"intercom-node"
 	],
-	"homepage": "https://github.com/musicplayce/intercom-ts",
+	"homepage": "https://github.com/elboy3/intercom-ts",
 	"bugs": {
-		"url": "https://github.com/musicplayce/intercom-ts/issues"
+		"url": "https://github.com/elboy3/intercom-ts/issues"
 	},
 	"repository": {
 		"type": "git",
